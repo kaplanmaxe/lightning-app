@@ -199,6 +199,7 @@ export const actions = {
     },
   }),
   createChannel: ({ ip, amount }) => (dispatch) => {
+    dispatch(notificationActions.addNotification('Opening Channel'))
     return new Promise((resolve, reject) => {
       const [pubkey, host] = ip && ip.split('@')
 
@@ -207,24 +208,19 @@ export const actions = {
         reject(err.message)
       }
 
-      const handleResolve = () => {
-        dispatch(notificationActions.addNotification('Opening Channel'))
-        resolve()
-      }
-
       dispatch(actions.listPeers())
         .then(({ peers }) => {
           const peer = _.find(peers, { pub_key: pubkey })
 
           if (peer) {
             const call = dispatch(actions.openChannel({ pubkey, amount }))
-            call.on('data', handleResolve)
+            call.on('data', resolve())
             call.on('error', rejectError)
           } else {
             dispatch(actions.connectPeer({ host, pubkey }))
               .then(() => {
                 const call = dispatch(actions.openChannel({ pubkey, amount }))
-                call.on('data', handleResolve)
+                call.on('data', resolve())
                 call.on('error', rejectError)
               })
               .catch(rejectError)
