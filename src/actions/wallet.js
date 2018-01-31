@@ -1,7 +1,7 @@
 import { observe } from 'mobx';
-import { RETRY_DELAY, PREFIX_URI } from '../config';
+import * as log from './logs';
+import { RETRY_DELAY, PREFIX_URI, MNEMONIC_WALLET } from '../config';
 import Mnemonic from 'bitcore-mnemonic';
-import { MNEMONIC_WALLET } from '../config';
 import __DEV__ from 'electron-is-dev';
 
 class ActionsWallet {
@@ -12,8 +12,8 @@ class ActionsWallet {
     observe(this._store, 'lndReady', () => {
       this.getBalance();
       this.getChannelBalance();
-
       this.getNewAddress();
+      this.getIPAddress();
     });
 
     observe(this._store, 'loaded', () => {
@@ -96,6 +96,16 @@ class ActionsWallet {
         clearTimeout(this.t2342);
         this.t2342 = setTimeout(() => this.getNewAddress(), RETRY_DELAY);
       });
+  }
+
+  async getIPAddress() {
+    try {
+      const request = await fetch('https://api.ipify.org?format=json');
+      const response = await request.json();
+      this._store.ipAddress = response.ip;
+    } catch (e) {
+      log.error('Error fetching IP');
+    }
   }
 }
 
