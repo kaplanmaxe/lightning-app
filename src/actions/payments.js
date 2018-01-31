@@ -85,7 +85,9 @@ class ActionsPayments {
   }
 
   setPaymentInfo(key, value) {
-    if (['amount', 'payment'].indexOf(key) === -1) { return false; }
+    if (['amount', 'payment'].indexOf(key) === -1) {
+      return false;
+    }
     this._store.paymentInfo[key] = value;
   }
 

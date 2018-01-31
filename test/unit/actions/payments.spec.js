@@ -6,7 +6,6 @@ describe('Actions Payments Unit Tests', () => {
   let store;
   let actionsGrpc;
   let actionsPayments;
-  
   const response = {
     destination:
       '035b55e3e08538afeef6ff9804e3830293eec1c4a6a9570f1e96a478dad1c86fed',
@@ -57,9 +56,16 @@ describe('Actions Payments Unit Tests', () => {
   describe('setPaymentInfo()', () => {
     it('should set paymentInfo property', () => {
       actionsPayments.setPaymentInfo('amount', 123);
-      actionsPayments.setPaymentInfo('payment', '2N1uP9hbSs75AmAYBFWW1p9qs72qFn7vuFX');
+      actionsPayments.setPaymentInfo(
+        'payment',
+        '2N1uP9hbSs75AmAYBFWW1p9qs72qFn7vuFX'
+      );
       expect(store.paymentInfo.amount, 'to be', 123);
-      expect(store.paymentInfo.payment, 'to be', '2N1uP9hbSs75AmAYBFWW1p9qs72qFn7vuFX');
+      expect(
+        store.paymentInfo.payment,
+        'to be',
+        '2N1uP9hbSs75AmAYBFWW1p9qs72qFn7vuFX'
+      );
     });
 
     it('should clear paymentInfo and paymentRequestResponse', async () => {
@@ -68,7 +74,10 @@ describe('Actions Payments Unit Tests', () => {
       await actionsPayments.decodePaymentRequest('goodPaymentRequest');
       // Set paymentInfo
       actionsPayments.setPaymentInfo('amount', 123);
-      actionsPayments.setPaymentInfo('payment', '2N1uP9hbSs75AmAYBFWW1p9qs72qFn7vuFX');
+      actionsPayments.setPaymentInfo(
+        'payment',
+        '2N1uP9hbSs75AmAYBFWW1p9qs72qFn7vuFX'
+      );
       // Clear
       actionsPayments.clearPaymentInfo();
 

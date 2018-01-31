@@ -12,7 +12,7 @@ import store from '../store';
 class Pay extends Component {
   render() {
     const { computedPayment } = store;
-    
+
     return (
       <View style={{ flex: 1, padding: 20, backgroundColor: colors.offwhite }}>
         <Header
@@ -37,7 +37,7 @@ class Pay extends Component {
           editable={!computedPayment.isPaymentRequest}
           keyboardType="numeric"
           onChangeText={amount => {
-            actionsPayments.setPaymentInfo('amount', amount)
+            actionsPayments.setPaymentInfo('amount', amount);
           }}
         />
         {computedPayment.description ? (

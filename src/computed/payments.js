@@ -1,5 +1,4 @@
 import { computed, extendObservable } from 'mobx';
-import { formatSatoshis } from '../helpers';
 
 const ComputedPayments = store => {
   extendObservable(store, {
@@ -8,13 +7,15 @@ const ComputedPayments = store => {
       let returnData;
       if (paymentRequestResponse.numSatoshis) {
         returnData = {
-          numSatoshis: paymentRequestResponse.numSatoshis,
+          amount: paymentRequestResponse.numSatoshis,
           description: paymentRequestResponse.description || null,
           isPaymentRequest: true,
         };
       } else {
         returnData = {
-          numSatoshis: paymentInfo.numSatoshis ? String(paymentInfo.numSatoshis.replace(/\D/g, '')) : '',
+          amount: paymentInfo.amount
+            ? String(paymentInfo.amount.replace(/\D/g, ''))
+            : '',
           isPaymentRequest: false,
         };
       }

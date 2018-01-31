@@ -77,6 +77,7 @@ ComponentTextInput.propTypes = {
   onChangeText: PropTypes.func,
   editable: PropTypes.bool,
   rightText: PropTypes.string,
+  keyboardType: PropTypes.string,
   style: PropTypes.object,
 };
 
