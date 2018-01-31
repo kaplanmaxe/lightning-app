@@ -82,6 +82,19 @@ class ActionsPayments {
       console.error(e);
     }
   }
+
+  setPaymentInfo(key, value) {
+    if (['amount', 'payment'].indexOf(key) === -1) { return false; }
+    this._store.paymentInfo[key] = value;
+  }
+
+  clearPaymentInfo() {
+    this._store.paymentRequestResponse = {};
+    this._store.paymentInfo = {
+      payment: '',
+      amount: '',
+    };
+  }
 }
 
 export default ActionsPayments;

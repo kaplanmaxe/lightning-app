@@ -12,6 +12,7 @@ class ComponentTextInput extends Component {
       placeholder,
       editable,
       rightText,
+      keyboardType = 'default',
       style,
     } = this.props;
 
@@ -33,6 +34,7 @@ class ComponentTextInput extends Component {
           placeholder={placeholder}
           value={value}
           editable={editable}
+          keyboardType={keyboardType}
           onChangeText={text => onChangeText && onChangeText(text)}
           style={{
             flex: 1,

@@ -3,6 +3,7 @@ import { extendObservable, action, observable } from 'mobx';
 import ComputedWallet from './computed/wallet';
 import ComputedTransactions from './computed/transactions';
 import ComputedChannels from './computed/channels';
+import ComputedPayments from './computed/payments';
 import { DEFAULT_ROUTE } from './config';
 
 class Store {
@@ -25,6 +26,10 @@ class Store {
       peersResponse: null,
       channelsResponse: null,
       paymentRequestResponse: {},
+      paymentInfo: {
+        payment: '',
+        amount: '',
+      },
       logs: observable([]),
 
       // Persistent data
@@ -39,6 +44,7 @@ class Store {
     ComputedWallet(this);
     ComputedTransactions(this);
     ComputedChannels(this);
+    ComputedPayments(this);
 
     try {
       AsyncStorage.getItem('settings').then(
