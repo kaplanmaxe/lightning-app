@@ -1,5 +1,8 @@
 ## Lightning Desktop App
 
+**N.B. The code on the master branch represents a first prototype. We're currently in the process of rebuilding the app with simplicity, testability, and mobile (react-native) in mind. This effort is happening on the [v2 branch](https://github.com/lightninglabs/lightning-app/tree/v2). We will continue to support the current master until v2 reaches feature parity with the old version (at which time we will deprecate the old version). If you're interested in contributing or porting features over to v2, we will happily review any PRs! Just take a look at [our GitHub Project board](https://github.com/lightninglabs/lightning-app/projects/1?fullscreen=true) to find an issue to get started. Thanks :)**
+
+
 This repo houses a cross-platform Lightning desktop app powered by
 [`lnd`](https://github.com/lightningnetwork/lnd/). The application is under
 active development and currently only operates on the Bitcoin testnet chain.
@@ -54,7 +57,7 @@ If you want your lnd.conf to replicate the configuration used by the packaged ap
 debuglevel=info
 bitcoin.active=1
 bitcoin.testnet=1
-neutrino.active=1
+bitcoin.node=neutrino
 neutrino.connect=btcd0.lightning.computer:18333
 autopilot.active=1
 ```
